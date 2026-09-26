@@ -65,8 +65,8 @@ export default function Navbar({ activeTab, setActiveTab, onRequestQuote }) {
 
             {/* Mobile Toggle */}
             <button 
-              className="btn-outline" 
-              style={{ display: 'none', padding: '0.4rem 0.6rem' }}
+              className="btn-outline mobile-menu-btn" 
+              style={{ padding: '0.4rem 0.6rem' }}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle menu"
             >
