@@ -1,0 +1,22 @@
+# Dependencies
+node_modules
+.pnpm-store
+
+# Production build
+dist
+dist-ssr
+
+# Temporary scripts & extracted bundles
+extracted_bundle.js
+extracted_strings.txt
+scratch_*.py
+scratch/
+
+# Vercel
+.vercel
+
+# Environment & OS files
+.env
+.env.local
+.DS_Store
+Thumbs.db
