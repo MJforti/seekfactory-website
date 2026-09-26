@@ -16,8 +16,9 @@ export default function HomePage({ setActiveTab, onRequestQuote, onQuickView, on
           poster="/images/hero_machinery.jpg"
           className="hero-bg"
         >
-          <source src="/videos/hero_machinery.mp4" type="video/mp4" />
           <source src="/videos/hero_machinery.webm" type="video/webm" />
+          <source src="/videos/hero_cnc_lathe.webm" type="video/webm" />
+          <source src="/videos/hero_machinery.mp4" type="video/mp4" />
           <img src="/images/hero_machinery.jpg" alt="Industrial Machinery Facility" className="hero-bg" />
         </video>
         <div className="hero-overlay"></div>
