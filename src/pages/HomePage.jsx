@@ -1,14 +1,25 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { ArrowRight, ShieldCheck, CheckCircle2, Award, Cpu, Flame, Wrench, Factory, Layers, FileCheck } from 'lucide-react';
 import { MACHINERY_CATEGORIES, PRODUCTS, WHY_SEEKFACTORY, SOURCING_PROCESS, TRUST_METRICS, TESTIMONIALS, INDUSTRIES } from '../data/machineryData';
 import MachineryCard from '../components/MachineryCard';
 
 export default function HomePage({ setActiveTab, onRequestQuote, onQuickView, onViewDetails }) {
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.defaultMuted = true;
+      videoRef.current.muted = true;
+      videoRef.current.play().catch(() => {});
+    }
+  }, []);
+
   return (
     <div>
       {/* 1. HERO SECTION */}
       <section className="hero">
         <video 
+          ref={videoRef}
           autoPlay 
           loop 
           muted 
