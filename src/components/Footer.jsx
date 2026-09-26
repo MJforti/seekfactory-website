@@ -1,6 +1,7 @@
 import React from 'react';
 import { ShieldCheck, Mail, Phone, MapPin, ExternalLink } from 'lucide-react';
 import { LOCATIONS } from '../data/machineryData';
+import Logo from './Logo';
 
 export default function Footer({ setActiveTab, onRequestQuote }) {
   return (
@@ -9,9 +10,8 @@ export default function Footer({ setActiveTab, onRequestQuote }) {
         <div className="footer-grid">
           {/* Col 1: Brand info */}
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.25rem' }}>
-              <div className="brand-icon">SF</div>
-              <div style={{ fontSize: '1.35rem', fontWeight: 800, color: '#fff' }}>SEEKFACTORY</div>
+            <div style={{ marginBottom: '1.25rem' }}>
+              <Logo height={38} />
             </div>
             <p style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)', lineHeight: 1.6, marginBottom: '1.5rem', maxWidth: '360px' }}>
               India's premier B2B cross-border marketplace and technical audit platform for verified industrial machinery, heavy manufacturing equipment, and BIS-compliant international imports.

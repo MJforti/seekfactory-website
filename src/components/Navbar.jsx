@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Menu, X, ShieldCheck, PhoneCall, ChevronRight, SlidersHorizontal } from 'lucide-react';
+import Logo from './Logo';
 
 export default function Navbar({ activeTab, setActiveTab, onRequestQuote }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -35,14 +36,10 @@ export default function Navbar({ activeTab, setActiveTab, onRequestQuote }) {
         <div className="container navbar-inner">
           <a 
             href="#home" 
-            className="brand-logo"
+            style={{ textDecoration: 'none' }}
             onClick={(e) => { e.preventDefault(); setActiveTab('home'); }}
           >
-            <div className="brand-icon">SF</div>
-            <div>
-              <div style={{ lineHeight: 1.1, fontSize: '1.25rem' }}>SEEKFACTORY</div>
-              <div className="brand-tag">Verified Industrial Machinery</div>
-            </div>
+            <Logo height={42} />
           </a>
 
           {/* Desktop Nav */}
