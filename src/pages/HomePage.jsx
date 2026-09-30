@@ -1,82 +1,48 @@
-import React, { useRef, useEffect } from 'react';
-import { ArrowRight, ShieldCheck, CheckCircle2, Award, Cpu, Flame, Wrench, Factory, Layers, FileCheck } from 'lucide-react';
-import { MACHINERY_CATEGORIES, PRODUCTS, WHY_SEEKFACTORY, SOURCING_PROCESS, TRUST_METRICS, TESTIMONIALS, INDUSTRIES } from '../data/machineryData';
+import React from 'react';
+import { ArrowRight } from 'lucide-react';
+import { MACHINERY_CATEGORIES, PRODUCTS, WHY_SEEKFACTORY, SOURCING_PROCESS, TESTIMONIALS, INDUSTRIES } from '../data/machineryData';
 import MachineryCard from '../components/MachineryCard';
 
 export default function HomePage({ setActiveTab, onRequestQuote, onQuickView, onViewDetails }) {
-  const videoRef = useRef(null);
-
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.defaultMuted = true;
-      videoRef.current.muted = true;
-      videoRef.current.play().catch(() => {});
-    }
-  }, []);
-
   return (
     <div>
-      {/* 1. HERO SECTION */}
+      {/* 1. HERO SECTION */
       <section className="hero">
-        <video 
-          ref={videoRef}
-          autoPlay 
-          loop 
-          muted 
-          playsInline 
-          poster="/images/hero_machinery.jpg"
-          className="hero-bg"
-        >
-          <source src="/videos/assembly_line_hd.webm" type="video/webm" />
-          <source src="/videos/assembly_line.webm" type="video/webm" />
-          <source src="/videos/hero_machinery.mp4" type="video/mp4" />
-          <source src="/videos/hero_machinery.webm" type="video/webm" />
-          <img src="/images/hero_machinery.jpg" alt="Industrial Machinery Facility" className="hero-bg" />
-        </video>
+        <img 
+          src="/images/hero_machinery.jpg" 
+          alt="Industrial machinery facility" 
+          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+        />
         <div className="hero-overlay"></div>
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className="hero-content">
-            <div className="hero-eyebrow">
-              <ShieldCheck size={16} /> Verified Cross-Border Machinery Marketplace
-            </div>
-            
             <h1 className="hero-title">
               Machinery that <span>moves industry</span> forward.
             </h1>
             
             <p className="hero-subtitle">
-              SeekFactory connects Indian SMEs and enterprise manufacturers directly with 50-point audited international machinery builders. End-to-end quality inspection, BIS certification facilitation, and door-to-door delivery.
+              SeekFactory connects Indian manufacturers with audited international machinery builders. End-to-end quality inspection and BIS certification facilitation.
             </p>
 
             <div className="hero-actions">
               <button className="btn-primary" onClick={() => setActiveTab('machinery')}>
-                Explore Machinery Catalog <ArrowRight size={16} />
+                Explore Machinery Catalog
               </button>
               <button className="btn-secondary" onClick={() => onRequestQuote()}>
                 Talk to a Technical Expert
               </button>
             </div>
-
-            <div className="hero-stats-row">
-              {TRUST_METRICS.map((stat, i) => (
-                <div key={i} className="hero-stat-item">
-                  <span className="hero-stat-num">{stat.metric}</span>
-                  <span className="hero-stat-label">{stat.label}</span>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </section>
 
-      {/* 2. FEATURED MACHINERY CATEGORIES */}
-      <section style={{ padding: '6rem 0', backgroundColor: 'var(--color-bg)' }}>
+      <section style={{ padding: '4rem 0' }}>
         <div className="container">
           <div className="section-header">
             <span className="section-tag">High-Performance Equipment</span>
             <h2 className="section-title">Engineered Machinery Categories</h2>
             <p className="section-desc">
-              Browse audited industrial machinery backed by verified factory inspection reports and precision engineering specifications.
+              Browse audited industrial machinery backed by verified factory inspection reports.
             </p>
           </div>
 
@@ -89,19 +55,12 @@ export default function HomePage({ setActiveTab, onRequestQuote, onQuickView, on
               >
                 <div className="category-img-wrapper">
                   <img src={cat.image} alt={cat.name} className="category-img" loading="lazy" />
-                  <span className="category-count">{cat.count}</span>
                 </div>
                 <div className="category-body">
                   <h3 className="category-title">{cat.name}</h3>
                   <p className="category-desc">{cat.description}</p>
                   
-                  <div className="category-specs-list">
-                    {cat.featuredSpecs.map((spec, idx) => (
-                      <span key={idx} className="spec-pill">{spec}</span>
-                    ))}
-                  </div>
-
-                  <div style={{ marginTop: '1.25rem', display: 'flex', alignItems: 'center', gap: '0.35rem', fontSize: '0.85rem', fontWeight: 700, color: 'var(--color-accent)' }}>
+                  <div style={{ marginTop: '1rem', fontSize: '0.85rem', fontWeight: 700, color: 'var(--color-accent)' }}>
                     Browse Category <ArrowRight size={14} />
                   </div>
                 </div>
@@ -111,36 +70,46 @@ export default function HomePage({ setActiveTab, onRequestQuote, onQuickView, on
         </div>
       </section>
 
-      {/* 3. FEATURED PRODUCTS CATALOG PREVIEW */}
-      <section style={{ padding: '6rem 0', backgroundColor: 'var(--color-surface-1)', borderTop: '1px solid var(--color-border)', borderBottom: '1px solid var(--color-border)' }}>
+      {/* 3. FEATURED PRODUCTS - large showcases instead of 3 small cards */}
+      <section style={{ padding: '4rem 0', backgroundColor: 'var(--color-surface-1)', borderTop: '1px solid var(--color-border)', borderBottom: '1px solid var(--color-border)' }}>
         <div className="container">
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '3rem' }}>
-            <div>
-              <span className="section-tag">Audited Inventory</span>
-              <h2 className="section-title">Featured Industrial Machinery</h2>
-              <p className="section-desc">Ready for immediate factory audit, pre-shipment inspection, and global shipment.</p>
-            </div>
-            <button className="btn-secondary" onClick={() => setActiveTab('machinery')}>
-              View All {PRODUCTS.length} Machines <ArrowRight size={16} />
-            </button>
+          <div className="section-header">
+            <span className="section-tag">Audited Inventory</span>
+            <h2 className="section-title">Featured Industrial Machinery</h2>
+            <p className="section-desc">Ready for immediate factory audit, pre-shipment inspection, and global shipment.</p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(360px, 1fr))', gap: '2rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(420px, 1fr))', gap: '2rem' }}>
             {PRODUCTS.slice(0, 3).map((product) => (
-              <MachineryCard 
-                key={product.id}
-                product={product}
-                onQuickView={onQuickView}
-                onRequestQuote={onRequestQuote}
-                onViewDetails={onViewDetails}
-              />
+              <div key={product.id} style={{ background: 'var(--color-surface-1)', border: '1px solid var(--color-border)', borderRadius: '5', overflow: 'hidden', display: 'flex', flexDirection: 'column', height: '100%' }}>
+                <div style={{ height: '280px', background: '#050608', overflow: 'hidden' }}>
+                  <img src={product.image} alt={product.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <div style={{ position: 'absolute', top: '1rem', left: '1rem', background: 'rgba(9,11,14,0.8)', border: '1px solid var(--color-border)', color: var(--color-text-primary), fontSize: '0.72rem', fontWeight: 700, padding: '0.25rem 0.6rem', borderRadius: var(--radius-sm), textTransform: 'uppercase' }}>Verified</div>
+                </div>
+                <div style={{ padding: '1.5rem' }}>
+                  <div style={{ fontSize: '0.75rem', fontFamily: 'var(--font-mono)', color: 'var(--color-accent)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.35rem' }}>
+                    {product.categoryName}
+                  </div>
+                  <h3 style={{ fontSize: '1.15rem', fontWeight: '700', color: 'var(--color-text-primary)', lineHeight: '1.35', marginBottom: '0.75rem' }}>
+                    {product.name}
+                  </h3>
+                  <div style={{ fontSize: '1.1rem', fontWeight: '800', fontFamily: 'var(--font-mono)', color: 'var(--color-text-primary)' }}>
+                    {product.priceRange}
+                  </div>
+                  <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginTop: '1rem', fontSize: '0.8rem' }}>
+                    <span style={{ color: 'var(--color-text-secondary)' }}>Min Order: </span><span style={{ color: 'var(--color-text-primary)' } fontFamily: 'var(--font-mono)' }>{product.minOrder}</span>
+                    <span style={{ color: 'var(--color-text-secondary)' }}>|</span>
+                    <span style={{ color: 'var(--color-text-primary)' }} fontFamily: 'var(--font-mono)' }>{product.leadTime}</span>
+                  </div>
+                </div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 4. WHY SEEKFACTORY - PROOF & DIFFERENTIATORS */}
-      <section style={{ padding: '6rem 0', backgroundColor: 'var(--color-bg)' }}>
+      {/* 4. WHY SEEKFACTORY - editorial content instead of numbered cards */}
+      <section style={{ padding: '4rem 0', backgroundColor: 'var(--color-bg)' }}>
         <div className="container">
           <div className="section-header">
             <span className="section-tag">Institutional Credibility</span>
@@ -150,20 +119,26 @@ export default function HomePage({ setActiveTab, onRequestQuote, onQuickView, on
             </p>
           </div>
 
-          <div className="why-grid">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
             {WHY_SEEKFACTORY.map((item, idx) => (
-              <div key={idx} className="why-card">
-                <div className="why-number">{item.number}</div>
-                <h3 className="why-title">{item.label}</h3>
-                <p className="why-desc">{item.description}</p>
+              <div key={idx} style={{ padding: '1.5rem', background: 'var(--color-surface-1)', border: '1px solid var(--color-border)', borderRadius: '5', transition: 'var(--transition-normal)' }}>
+                <div style={{ fontSize: '1.8rem', fontWeight: '900', fontFamily: 'var(--font-mono)', color: 'var(--color-accent)', marginBottom: '0.75rem', lineHeight: '1' }}>
+                  {item.number}
+                </div>
+                <h3 style={{ fontSize: '1.15rem', fontWeight: '700', marginBottom: '0.5rem', color: 'var(--color-text-primary)' }}>
+                  {item.label}
+                </h3>
+                <p style={{ fontSize: '0.9rem', color: 'var(--color-text-secondary)', lineHeight: '1.5', marginBottom: '0' }}>
+                  {item.description}
+                </p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 5. EDITORIAL SOURCING PROCESS */}
-      <section style={{ padding: '6rem 0', backgroundColor: 'var(--color-surface-1)', borderTop: '1px solid var(--color-border)', borderBottom: '1px solid var(--color-border)' }}>
+      {/* 5. SOURCING PROCESS - simplified */}
+      <section style={{ padding: '4rem 0', backgroundColor: 'var(--color-surface-1)', borderTop: '1px solid var(--color-border)', borderBottom: '1px solid var(--color-border)' }}>
         <div className="container">
           <div className="section-header">
             <span className="section-tag">End-to-End Workflow</span>
@@ -173,20 +148,26 @@ export default function HomePage({ setActiveTab, onRequestQuote, onQuickView, on
             </p>
           </div>
 
-          <div className="process-timeline">
-            {SOURCING_PROCESS.map((proc, i) => (
-              <div key={i} className="process-step">
-                <div className="process-num">{proc.step}</div>
-                <h3 className="process-title">{proc.title}</h3>
-                <p className="process-desc">{proc.description}</p>
+          <div style={{ display: 'flex', gap: '2rem', marginTop: '2rem' }}>
+            {SOURCING_PROCESS.slice(0, 3).map((proc, i) => (
+              <div key={i} style={{ flex: '1', textAlign: 'center' }}>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '2rem', fontWeight: '800', color: 'var(--color-accent)', marginBottom: '0.75rem' }}>
+                  {proc.step}
+                </div>
+                <h3 style={{ fontSize: '1rem', fontWeight: '700', marginBottom: '0.5rem', color: 'var(--color-text-primary)' }}>
+                  {proc.title}
+                </h3>
+                <p style={{ fontSize: '0.85rem', color: 'var(--color-text-secondary)', lineHeight: '1.5' }}>
+                  {proc.description}
+                </p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 6. INDUSTRIES SHOWCASE */}
-      <section style={{ padding: '6rem 0', backgroundColor: 'var(--color-bg)' }}>
+      {/* 6. INDUSTRIES SHOWCASE - split layouts instead of card grid */}
+      <section style={{ padding: '4rem 0', backgroundColor: 'var(--color-bg)' }}>
         <div className="container">
           <div className="section-header">
             <span className="section-tag">Target Sectors</span>
@@ -196,14 +177,20 @@ export default function HomePage({ setActiveTab, onRequestQuote, onQuickView, on
             </p>
           </div>
 
-          <div className="industry-grid">
-            {INDUSTRIES.map((ind) => (
-              <div key={ind.id} className="industry-card" onClick={() => setActiveTab('machinery')}>
-                <img src={ind.image} alt={ind.name} className="industry-img" loading="lazy" />
-                <div className="industry-overlay">
-                  <div className="industry-tag">{ind.tag}</div>
-                  <h3 className="industry-title">{ind.name}</h3>
-                  <p className="industry-desc">{ind.description}</p>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
+            {INDUSTRIES.map((ind, i) => (
+              <div key={ind.id} style={{ background: 'var(--color-surface-1)', border: '1px solid var(--color-border)', borderRadius: '5', overflow: 'hidden', display: 'flex', flexDirection: 'column', height: '340px' }}>
+                <img src={ind.image} alt={ind.name} style={{ width: '100%', height: '240px', objectFit: 'cover' }} />
+                <div style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--color-accent)', textTransform: 'uppercase', marginBottom: '0.35rem' }}>
+                    {ind.tag}
+                  </span>
+                  <h3 style={{ fontSize: '1.25rem', fontWeight: '800', color: '#fff', margin: '0.5rem 0 0.75rem 0' }}>
+                    {ind.name}
+                  </h3>
+                  <p style={{ fontSize: '0.85rem', color: 'var(--color-text-secondary)', lineHeight: '1.5', flexGrow: 1 }}>
+                    {ind.description}
+                  </p>
                 </div>
               </div>
             ))}
@@ -211,24 +198,26 @@ export default function HomePage({ setActiveTab, onRequestQuote, onQuickView, on
         </div>
       </section>
 
-      {/* 7. SOCIAL PROOF & TESTIMONIALS */}
-      <section style={{ padding: '6rem 0', backgroundColor: 'var(--color-surface-1)', borderTop: '1px solid var(--color-border)' }}>
+      {/* 7. SOCIAL PROOF - simplified testimonials */}
+      <section style={{ padding: '4rem 0', backgroundColor: 'var(--color-surface-1)', borderTop: '1px solid var(--color-border)' }}>
         <div className="container">
           <div className="section-header center">
             <span className="section-tag">Verified Proof</span>
             <h2 className="section-title">Trusted by Manufacturers Across India & Global Markets</h2>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem' }}>
+          <div style={{ maxWidth: '800px', margin: '0 auto' }}>
             {TESTIMONIALS.map((t, idx) => (
-              <div key={idx} style={{ background: 'var(--color-surface-2)', padding: '2rem', borderRadius: 'var(--radius-md)', border: '1px solid var(--color-border)', display: 'flex', flexDirection: 'column' }}>
-                <p style={{ fontStyle: 'italic', color: 'var(--color-text-secondary)', fontSize: '0.95rem', lineHeight: 1.6, marginBottom: '1.5rem', flexGrow: 1 }}>
+              <div key={idx} style={{ padding: '2rem', borderRadius: '5', border: '1px solid var(--color-border)', marginBottom: '1.5rem', background: 'var(--color-surface-2)' }}>
+                <p style={{ fontStyle: 'italic', color: 'var(--color-text-secondary)', fontSize: '0.95rem', lineHeight: '1.6', marginBottom: '1.5rem' }}>
                   "{t.quote}"
                 </p>
-                <div style={{ borderTop: '1px solid var(--color-border)', paddingTop: '1rem' }}>
-                  <div style={{ fontWeight: 700, color: 'var(--color-text-primary)' }}>{t.author}</div>
-                  <div style={{ fontSize: '0.8rem', color: 'var(--color-accent)' }}>{t.title}</div>
-                  <div style={{ fontSize: '0.8rem', color: 'var(--color-text-muted)' }}>{t.company}</div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: '1rem' }}>
+                  <div>
+                    <div style={{ fontWeight: '700', color: 'var(--color-text-primary)' }}>{t.author}</div>
+                    <div style={{ fontSize: '0.8rem', color: 'var(--color-accent)' }}>{t.title}</div>
+                    <div style={{ fontSize: '0.78rem', color: 'var(--color-text-muted)' }}>{t.company}</div>
+                  </div>
                 </div>
               </div>
             ))}
@@ -236,21 +225,21 @@ export default function HomePage({ setActiveTab, onRequestQuote, onQuickView, on
         </div>
       </section>
 
-      {/* 8. REQUEST A QUOTE CONVERSION CTA */}
-      <section style={{ padding: '5rem 0', background: 'linear-gradient(135deg, #11141A 0%, #1D232F 100%)', borderTop: '1px solid var(--color-border-bright)' }}>
-        <div className="container" style={{ textAlign: 'center', maxWidth: '780px' }}>
+      {/* 8. REQUEST A QUOTE CTA - no gradient */}
+      <section style={{ padding: '4rem 0', backgroundColor: 'var(--color-bg)', borderTop: '1px solid var(--color-border-bright)' }}>
+        <div className="container" style={{ textAlign: 'center', maxWidth: '720px' }}>
           <span className="section-tag" style={{ color: 'var(--color-accent)' }}>Ready to Upgrade Your Manufacturing Facility?</span>
-          <h2 style={{ fontSize: '2.5rem', fontWeight: 800, color: '#fff', margin: '0.75rem 0 1.25rem 0' }}>
+          <h2 style={{ fontSize: '2rem', fontWeight: '800', color: '#fff', margin: '0.5rem 0 1rem 0' }}>
             Request an Itemized Machinery Quotation
           </h2>
-          <p style={{ fontSize: '1.05rem', color: 'var(--color-text-secondary)', marginBottom: '2rem' }}>
-            Receive complete machine specifications, FOB/CIF pricing, lead times, and factory audit verification data within 4 business hours.
+          <p style={{ fontSize: '1rem', color: 'var(--color-text-secondary)', marginBottom: '1.5rem' }}>
+            Receive complete machine specifications, FOB/CIF pricing, lead times, and factory audit verification data.
           </p>
           <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
-            <button className="btn-primary" style={{ padding: '0.85rem 2rem', fontSize: '1rem' }} onClick={() => onRequestQuote()}>
+            <button className="btn-primary" style={{ padding: '0.75rem 1.5rem', fontSize: '0.95rem' }} onClick={() => onRequestQuote()}>
               Request a Custom Quote
             </button>
-            <button className="btn-secondary" style={{ padding: '0.85rem 2rem', fontSize: '1rem' }} onClick={() => setActiveTab('contact')}>
+            <button className="btn-secondary" style={{ padding: '0.75rem 1.5rem', fontSize: '0.9rem' }} onClick={() => setActiveTab('contact')}>
               Contact Mumbai Sales Desk
             </button>
           </div>
